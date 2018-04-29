@@ -18,7 +18,8 @@ class Server:
 		while True:
 			data = c.recv(1024)
 			for connection in self.connections:
-				connection.send(bytes(data))
+				if connection is not c:
+					connection.send(bytes(data))
 				
 			if not data:
 				print(str(a[0]) + ":" + str(a[1]) + "disconnected")
