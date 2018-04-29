@@ -55,7 +55,6 @@ class Client:
 				break
 			print(str(data, 'utf-8'))
 
-if sys.modules['idlelib']: sys.argv.extend(input("Args: ").split())
 if(len(sys.argv) > 1):
 	client = Client(sys.argv[1])
 else:
