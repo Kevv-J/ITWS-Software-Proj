@@ -21,18 +21,20 @@ class Server:
 				connection.send(bytes(data))
 				
 			if not data:
+				print(str(a[0]) + ":" + str(a[1]) + "disconnected")
 				self.connections.remove(c)
 				c.close()
 				break
 
 	def run(self):
+		print("server started")
 		while True:
 			c,a = self.sock.accept()
 			cThread = threading.Thread(target=self.handler,args=(c,a) )
 			cThread.daemon = True
 			cThread.start()
 			self.connections.append(c)
-			print(self.connections)
+			print(str(a[0]) + ":" + str(a[1]) + "connected")
 
 
 class Client:
@@ -51,8 +53,9 @@ class Client:
 			data = self.sock.recv(1024)
 			if not data:
 				break
+			print(str(data, 'utf-8'))
 
-	
+if sys.modules['idlelib']: sys.argv.extend(input("Args: ").split())
 if(len(sys.argv) > 1):
 	client = Client(sys.argv[1])
 else:
