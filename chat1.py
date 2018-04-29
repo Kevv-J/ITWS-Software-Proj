@@ -21,8 +21,9 @@ class Server:
 				if connection is not c:
 					connection.send(bytes(data))
 				
+				
 			if not data:
-				print(str(a[0]) + ":" + str(a[1]) + "disconnected")
+				print(str(a[0]) + ":" + str(a[1]) + " disconnected")
 				self.connections.remove(c)
 				c.close()
 				break
@@ -35,7 +36,7 @@ class Server:
 			cThread.daemon = True
 			cThread.start()
 			self.connections.append(c)
-			print(str(a[0]) + ":" + str(a[1]) + "connected")
+			print(str(a[0]) + ":" + str(a[1]) + " connected")
 
 
 class Client:
